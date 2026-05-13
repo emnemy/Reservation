@@ -340,7 +340,7 @@ function respond(data) {
 }`;
 
 // ── State ──────────────────────────────────────────────────────────────────
-let gasUrl = localStorage.getItem("gasUrl") || "";
+let gasUrl = localStorage.getItem("gasUrl_reservation") || "";
 let currentYear  = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 let bookings = {};   // key → [{id,customerName,phone,rooms,note}]
@@ -414,7 +414,7 @@ async function doConnect(){
     gasUrl=url;
     const res = await api({action:"getAll",prefix:"test-"});
     if(typeof res==="object"&&!res.error){
-      localStorage.setItem("gasUrl",url);
+      localStorage.setItem("gasUrl_reservation",url);
       resultEl.textContent="✅ เชื่อมต่อสำเร็จ! กำลังเปิดโปรแกรม...";
       resultEl.className="tres res-ok"; resultEl.style.display="block";
       setTimeout(()=>startApp(), 900);
@@ -447,7 +447,7 @@ function onYearChange(){
   loadBookings();
 }
 function resetUrl(){
-  localStorage.removeItem("gasUrl"); gasUrl=""; bookings={};
+  localStorage.removeItem("gasUrl_reservation"); gasUrl=""; bookings={};
   document.getElementById("settOverlay").style.display="none";
   document.getElementById("app-page").style.display="none";
   document.getElementById("setup-page").style.display="flex";
@@ -688,7 +688,7 @@ async function apiSave(key,arr){
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────
-if(gasUrl){ startApp(); } else { gotoStep(1); }
+if(location.search.includes("setup") || !gasUrl){ gotoStep(1); } else { startApp(); }
 </script>
 </body>
 </html>
