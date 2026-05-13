@@ -9,7 +9,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#F0F4F8;font-family:'Sarabun',sans-serif;min-height:100vh}
 button,input,textarea,select{font-family:'Sarabun',sans-serif}
-
 /* ── SETUP ── */
 #setup-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#0D2137 0%,#1A3A5C 100%)}
 .sw{width:100%;max-width:640px}
@@ -29,103 +28,98 @@ button,input,textarea,select{font-family:'Sarabun',sans-serif}
 pre.codeblock{background:#0D1117;color:#e6edf3;border-radius:10px;padding:14px 16px;font-size:11.5px;overflow-x:auto;max-height:200px;font-family:monospace;line-height:1.5;white-space:pre}
 .setup-note{text-align:center;color:rgba(255,255,255,.5);font-size:12px;margin-top:14px}
 .btn-row{display:flex;gap:10px;margin-top:16px}
-.sbtn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600;font-family:'Sarabun',sans-serif;transition:all .2s}
-.sbtn-primary{background:#1A3A5C;color:#fff}
-.sbtn-primary:hover{background:#2A5080}
-.sbtn-gold{background:#C9A84C;color:#0D2137}
-.sbtn-gold:hover{background:#E0BC5E}
-.sbtn-outline{background:none;border:1px solid #ddd;color:#666}
-.sbtn-outline:hover{background:#f5f5f5}
+.sbtn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600;transition:all .2s}
+.sbtn-primary{background:#1A3A5C;color:#fff}.sbtn-primary:hover{background:#2A5080}
+.sbtn-gold{background:#C9A84C;color:#0D2137;text-decoration:none;display:inline-block}.sbtn-gold:hover{background:#E0BC5E}
+.sbtn-outline{background:none;border:1px solid #ddd;color:#666}.sbtn-outline:hover{background:#f5f5f5}
 .copy-row{display:flex;justify-content:flex-end;margin-top:8px}
-.btn-copy{padding:6px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;font-family:'Sarabun',sans-serif;background:#30363d;color:#e6edf3}
+.btn-copy{padding:6px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;background:#30363d;color:#e6edf3}
 .btn-copy.copied{background:#1f6feb}
 .url-label{display:block;font-size:13px;font-weight:600;color:#1A3A5C;margin-bottom:6px}
 .url-input{width:100%;padding:11px 14px;border-radius:8px;border:2px solid #B8C9D9;font-size:14px;outline:none;margin-bottom:10px}
 .url-input:focus{border-color:#1A3A5C}
-.connect-btn{width:100%;padding:13px;border-radius:8px;border:none;cursor:pointer;font-size:15px;font-weight:700;font-family:'Sarabun',sans-serif;background:#1A3A5C;color:#fff;transition:background .2s}
+.connect-btn{width:100%;padding:13px;border-radius:8px;border:none;cursor:pointer;font-size:15px;font-weight:700;background:#1A3A5C;color:#fff;transition:background .2s}
 .connect-btn:hover{background:#2A5080}
 #test-result{padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:10px;display:none}
-.res-ok{background:#DCFCE7;color:#16A34A}
-.res-err{background:#FEE2E2;color:#DC2626}
-
+.res-ok{background:#DCFCE7;color:#16A34A}.res-err{background:#FEE2E2;color:#DC2626}
 /* ── APP ── */
 #app-page{display:none}
 .header{background:linear-gradient(135deg,#0D2137 0%,#1A3A5C 70%,#1E4976 100%);padding:20px 28px 16px;box-shadow:0 4px 20px rgba(13,33,55,.4)}
-.hinner{max-width:1400px;margin:0 auto}
+.hinner{max-width:1500px;margin:0 auto}
 .htop{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .hsub{color:#C9A84C;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px}
 .htitle{font-family:'Playfair Display',serif;color:#fff;font-size:22px;font-weight:700}
-.hcontrols{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.year-sel{padding:7px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:14px;font-weight:600;font-family:'Sarabun',sans-serif;cursor:pointer;outline:none}
+.hcontrols{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.year-sel{padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:14px;font-weight:600;cursor:pointer;outline:none}
 .year-sel option{background:#1A3A5C;color:#fff}
-.hbtn{padding:7px 14px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'Sarabun',sans-serif}
-.hbtn.act{background:#C9A84C;color:#0D2137}
-.hbtn.inact{background:rgba(255,255,255,.12);color:#fff}
+.hbtn{padding:7px 13px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:600}
+.hbtn.act{background:#C9A84C;color:#0D2137}.hbtn.inact{background:rgba(255,255,255,.12);color:#fff}
 .hbtn.out{background:none;color:#fff;border:1px solid rgba(255,255,255,.3)}
-.room-pills{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.room-pills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
 .rpill{border-radius:10px;padding:7px 14px;background:rgba(255,255,255,.1);border-left:3px solid}
-.rpill-name{font-size:11px;font-weight:700;color:#C9A84C}
+.rpill-name{font-size:10px;font-weight:700;color:#C9A84C}
+.rpill-sub{font-size:10px;color:rgba(255,255,255,.6)}
 .rpill-info{font-size:12px;color:#fff}
 .mtabs{background:#fff;border-bottom:2px solid #E0EAF4;overflow-x:auto}
-.mtabs-in{max-width:1400px;margin:0 auto;padding:0 20px;display:flex}
-.mtab{padding:12px 13px;border:none;background:none;cursor:pointer;font-size:13px;white-space:nowrap;border-bottom:3px solid transparent;color:#888;font-family:'Sarabun',sans-serif;margin-bottom:-2px}
+.mtabs-in{max-width:1500px;margin:0 auto;padding:0 20px;display:flex}
+.mtab{padding:12px 13px;border:none;background:none;cursor:pointer;font-size:13px;white-space:nowrap;border-bottom:3px solid transparent;color:#888;margin-bottom:-2px}
 .mtab.act{font-weight:700;color:#1A3A5C;border-bottom-color:#1A3A5C}
-.amain{max-width:1400px;margin:0 auto;padding:18px 12px}
+.amain{max-width:1500px;margin:0 auto;padding:18px 12px}
 .main-top{margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .main-ttl{color:#0D2137;font-size:17px;font-weight:700}
 .main-hint{font-size:12px;color:#AAA}
-
 /* ── TABLE ── */
 .twrap{overflow-x:auto;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,.1);background:#fff}
-table{width:100%;border-collapse:collapse;min-width:700px}
+table{width:100%;border-collapse:collapse;min-width:900px}
 thead tr{background:#1A3A5C}
-th{padding:12px 10px;color:#fff;font-size:12px;font-weight:700;font-family:'Sarabun',sans-serif}
+th{padding:10px 8px;color:#fff;font-size:11px;font-weight:700}
 th.dcol{color:#C9A84C;font-size:13px;width:80px;text-align:center}
-td.dcell{padding:9px 14px;text-align:center;border-bottom:1px solid #EEF2F7;vertical-align:middle}
-.dnum{font-weight:800;font-size:16px}
-.dname{font-size:10px;font-weight:600}
-td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical-align:top;min-width:160px;transition:background .15s}
-.cell-add{color:#CCC;font-size:11px;text-align:center;padding:8px 0}
-.bk-chip{border-radius:5px;padding:4px 8px;margin-bottom:3px;display:flex;align-items:flex-start;gap:4px}
-.bk-num{width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700;flex-shrink:0;margin-top:1px}
-.bk-info{flex:1;min-width:0}
+th.sumcol{color:#F0C060;font-size:11px;width:130px;background:#0D2137}
+td.dcell{padding:9px 10px;text-align:center;border-bottom:1px solid #EEF2F7;vertical-align:middle}
+.dnum{font-weight:800;font-size:16px}.dname{font-size:10px;font-weight:600}
+td.rcell{padding:4px 6px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical-align:top;min-width:150px;transition:background .15s}
+td.sumcell{padding:6px 8px;border-bottom:1px solid #EEF2F7;vertical-align:top;background:#FAFCFF;border-left:2px solid #C9A84C}
+.cell-add{color:#CCC;font-size:10px;text-align:center;padding:6px 0}
+.bk-chip{border-radius:5px;padding:3px 7px;margin-bottom:3px}
+.bk-chip-head{display:flex;align-items:center;gap:3px}
+.bk-num{width:13px;height:13px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:700;flex-shrink:0}
 .bk-name{font-weight:700;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bk-sub{font-size:10px;color:#888}
-.more-chip{text-align:center;font-size:10px;color:#999;padding:2px 0}
-
-/* ── LIST VIEW ── */
+.bk-sub{font-size:9px;color:#888;margin-left:16px}
+.more-chip{text-align:center;font-size:9px;color:#999;padding:1px 0}
+/* Summary cell */
+.sum-row-item{font-size:10px;color:#555;margin-bottom:2px;display:flex;justify-content:space-between}
+.sum-row-item.total{font-weight:700;color:#1A3A5C;border-top:1px solid #DDD;margin-top:3px;padding-top:3px}
+.sum-label{color:#888}.sum-val{font-weight:700;color:#1A3A5C}
+/* ── LIST ── */
 .lwrap{display:flex;flex-direction:column;gap:10px}
 .lcard{background:#fff;border-radius:12px;padding:14px 18px;box-shadow:0 2px 8px rgba(0,0,0,.07);cursor:pointer;display:flex;gap:14px;transition:box-shadow .2s}
 .lday{text-align:center;min-width:44px}
-.ldnum{font-weight:800;font-size:20px}
-.ldname{font-size:10px;font-weight:600}
-.lslots{display:flex;flex-direction:column;gap:6px}
-.lslot{display:flex;gap:10px;padding:8px 12px;border-radius:8px;align-items:flex-start}
+.ldnum{font-weight:800;font-size:20px}.ldname{font-size:10px;font-weight:600}
+.lslots{display:flex;flex-direction:column;gap:5px}
+.lslot{display:flex;gap:10px;padding:7px 10px;border-radius:8px;align-items:flex-start}
 .lsbadge{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;flex-shrink:0;margin-top:1px}
 .empty-box{text-align:center;padding:60px 20px;color:#BBB;background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-
 /* ── MODAL ── */
 .overlay{position:fixed;inset:0;background:rgba(13,33,55,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
-.modal-box{background:#fff;border-radius:18px;width:100%;max-width:580px;box-shadow:0 24px 64px rgba(0,0,0,.4);overflow:hidden;max-height:92vh;display:flex;flex-direction:column}
+.modal-box{background:#fff;border-radius:18px;width:100%;max-width:600px;box-shadow:0 24px 64px rgba(0,0,0,.4);overflow:hidden;max-height:94vh;display:flex;flex-direction:column}
 .mhead{padding:18px 22px 14px}
 .mhead-date{color:rgba(255,255,255,.7);font-size:12px;margin-bottom:2px}
 .mhead-room{color:#fff;font-size:18px;font-weight:700}
-.mhead-cap{color:rgba(255,255,255,.7);font-size:12px;margin-top:2px}
+.mhead-sub{color:rgba(255,255,255,.75);font-size:12px;margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+.mhead-badge{background:rgba(255,255,255,.15);border-radius:6px;padding:3px 8px;font-size:11px}
 .mbody{overflow-y:auto;flex:1}
-/* Booking list */
 .bk-list{padding:14px 20px}
-.bk-list-title{font-size:13px;font-weight:700;color:#1A3A5C;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.bk-list-title{font-size:13px;font-weight:700;color:#1A3A5C;margin-bottom:10px}
 .bk-item{background:#F4F8FC;border-radius:10px;padding:12px 14px;margin-bottom:8px;border-left:4px solid}
-.bk-item-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bk-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .bk-item-name{font-weight:700;font-size:15px;color:#0D2137}
-.bk-item-phone{font-size:13px;color:#555}
-.bk-item-detail{font-size:12px;color:#777;margin-top:4px}
+.bk-item-detail{font-size:12px;color:#666;margin-top:5px;display:flex;flex-wrap:wrap;gap:8px}
+.bk-tag{background:#E8EFF8;border-radius:5px;padding:2px 8px;font-size:11px;color:#1A3A5C;font-weight:600}
 .bk-item-btns{display:flex;gap:6px;margin-top:8px}
-.bk-btn-edit{padding:4px 12px;border-radius:6px;border:1px solid #1A3A5C;background:none;color:#1A3A5C;cursor:pointer;font-size:12px;font-family:'Sarabun',sans-serif}
-.bk-btn-del{padding:4px 12px;border-radius:6px;border:1px solid #EF4444;background:none;color:#EF4444;cursor:pointer;font-size:12px;font-family:'Sarabun',sans-serif}
-.add-bk-btn{width:100%;padding:10px;border-radius:10px;border:2px dashed #B8C9D9;background:none;color:#1A3A5C;cursor:pointer;font-size:14px;font-weight:600;font-family:'Sarabun',sans-serif;transition:all .2s;margin-top:4px}
+.bk-btn-edit{padding:4px 12px;border-radius:6px;border:1px solid #1A3A5C;background:none;color:#1A3A5C;cursor:pointer;font-size:12px}
+.bk-btn-del{padding:4px 12px;border-radius:6px;border:1px solid #EF4444;background:none;color:#EF4444;cursor:pointer;font-size:12px}
+.add-bk-btn{width:100%;padding:10px;border-radius:10px;border:2px dashed #B8C9D9;background:none;color:#1A3A5C;cursor:pointer;font-size:14px;font-weight:600;transition:all .2s;margin-top:4px}
 .add-bk-btn:hover{background:#EEF4FB;border-color:#1A3A5C}
-/* Booking form */
 .bk-form{padding:16px 20px;border-top:1px solid #E8F0F8}
 .bk-form-title{font-size:14px;font-weight:700;color:#1A3A5C;margin-bottom:14px}
 .field{margin-bottom:11px}
@@ -136,27 +130,25 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .form-btns{display:flex;gap:10px;margin-top:14px;justify-content:flex-end}
-.fbtn{padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600;font-family:'Sarabun',sans-serif}
+.fbtn{padding:9px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600}
 .fbtn-cancel{background:none;border:1px solid #ddd;color:#666}
-.fbtn-save{background:#1A3A5C;color:#fff}
-.fbtn-save:hover{background:#2A5080}
+.fbtn-save{color:#fff}.fbtn-save:hover{opacity:.9}
 .mfooter-close{padding:12px 20px;border-top:1px solid #EEF2F7;display:flex;justify-content:flex-end}
-.close-btn{padding:9px 24px;border-radius:8px;border:1px solid #ddd;background:none;color:#666;cursor:pointer;font-size:14px;font-family:'Sarabun',sans-serif}
-
-/* ── MISC ── */
+.close-btn{padding:9px 24px;border-radius:8px;border:1px solid #ddd;background:none;color:#666;cursor:pointer;font-size:14px}
+/* Misc */
 .toast{position:fixed;bottom:24px;right:24px;z-index:2000;color:#fff;padding:12px 20px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.2);font-size:15px;animation:su .3s ease;pointer-events:none}
 @keyframes su{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .loading-txt{text-align:center;padding:60px;color:#999}
 .settbox{background:#fff;border-radius:16px;width:100%;max-width:400px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
 .del-confirm{background:#FEE2E2;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:13px;color:#DC2626;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.dconf-yes{background:#EF4444;color:#fff;padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-family:'Sarabun',sans-serif;font-weight:700}
-.dconf-no{background:none;border:1px solid #ccc;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px;font-family:'Sarabun',sans-serif}
+.dconf-yes{background:#EF4444;color:#fff;padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:700}
+.dconf-no{background:none;border:1px solid #ccc;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px}
 @media(max-width:600px){.frow,.frow3{grid-template-columns:1fr}.header{padding:16px}.amain{padding:12px 8px}}
 </style>
 </head>
 <body>
 
-<!-- ══ SETUP PAGE ══════════════════════════════════════════════════════════ -->
+<!-- ══ SETUP PAGE ═════════════════════════════════════════════════════════ -->
 <div id="setup-page">
   <div class="sw">
     <div class="stitle">
@@ -165,14 +157,11 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
       <p>เชื่อมต่อกับ Google Sheets เพื่อให้ข้อมูลซิงค์ได้จากทุกอุปกรณ์</p>
     </div>
     <div class="stepbar">
-      <div class="sdot done" id="dot1">1</div>
-      <div class="sline" id="line1"></div>
-      <div class="sdot" id="dot2">2</div>
-      <div class="sline" id="line2"></div>
+      <div class="sdot done" id="dot1">1</div><div class="sline" id="line1"></div>
+      <div class="sdot" id="dot2">2</div><div class="sline" id="line2"></div>
       <div class="sdot" id="dot3">3</div>
     </div>
     <div class="scard">
-      <!-- Step 1 -->
       <div id="step1">
         <h2>ขั้นตอนที่ 1: สร้าง Google Sheet</h2>
         <p>1. เปิด <a href="https://sheets.google.com/create" target="_blank" style="color:#1A3A5C;font-weight:700">sheets.google.com</a> แล้วสร้าง Spreadsheet ใหม่<br>
@@ -184,7 +173,6 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
           <button class="sbtn sbtn-primary" onclick="gotoStep(2)">ถัดไป →</button>
         </div>
       </div>
-      <!-- Step 2 -->
       <div id="step2" style="display:none">
         <h2>ขั้นตอนที่ 2: วาง Script และ Deploy</h2>
         <p>1. คัดลอกโค้ดด้านล่าง → วางใน Apps Script<br>
@@ -200,7 +188,6 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
           <button class="sbtn sbtn-primary" onclick="gotoStep(3)">Deploy แล้ว ถัดไป →</button>
         </div>
       </div>
-      <!-- Step 3 -->
       <div id="step3" style="display:none">
         <h2>ขั้นตอนที่ 3: ใส่ Web App URL</h2>
         <p>วาง URL ที่ได้จาก Deploy Apps Script ด้านล่าง (ลงท้ายด้วย <strong>/exec</strong>)</p>
@@ -217,7 +204,7 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
   </div>
 </div>
 
-<!-- ══ APP PAGE ════════════════════════════════════════════════════════════ -->
+<!-- ══ APP PAGE ═══════════════════════════════════════════════════════════ -->
 <div id="app-page">
   <div class="header">
     <div class="hinner">
@@ -268,18 +255,36 @@ td.rcell{padding:5px 7px;border-bottom:1px solid #EEF2F7;cursor:pointer;vertical
 </div>
 
 <script>
-// ── Constants ──────────────────────────────────────────────────────────────
+// ── Room definitions ────────────────────────────────────────────────────────
 const ROOMS = [
-  { name:"Superior",        cap:58, color:"#1A3A5C", light:"#EEF4FB" },
-  { name:"Junior Suite",    cap:12, color:"#7C3A8C", light:"#F5EEF8" },
-  { name:"Riverview Suite", cap:8,  color:"#1E7A6A", light:"#EEF7F4" }
+  {
+    name: "Superior", cap: 58, color: "#1A3A5C", light: "#EEF4FB",
+    bedTypes: [
+      { name: "Double Bed", cap: 19 },
+      { name: "Twin Bed",   cap: 39 }
+    ]
+  },
+  {
+    name: "Junior Suite", cap: 12, color: "#6B3A8C", light: "#F4EEF8",
+    bedTypes: [
+      { name: "Twin Bed",   cap: 7 },
+      { name: "Triple Bed", cap: 5 }
+    ]
+  },
+  {
+    name: "Riverview Suite", cap: 8, color: "#1E7A6A", light: "#EEF7F4",
+    bedTypes: [
+      { name: "Double Bed", cap: 6 },
+      { name: "Twin Bed",   cap: 2 }
+    ]
+  }
 ];
+
 const MTH = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
 const MSH = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 const DTH = ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์"];
 const DSH = ["อา","จ","อ","พ","พฤ","ศ","ส"];
-const DC  = {0:"#B91C1C", 6:"#1D4ED8"};
-const BASE_YEAR = 2026;
+const DC  = {0:"#B91C1C",6:"#1D4ED8"};
 const YEARS = [2026,2027,2028];
 
 const GAS_CODE = `const SHEET_NAME = "Reservations";
@@ -339,62 +344,76 @@ function respond(data) {
     .setMimeType(ContentService.MimeType.JSON);
 }`;
 
-// ── State ──────────────────────────────────────────────────────────────────
+// ── State ───────────────────────────────────────────────────────────────────
 let gasUrl = localStorage.getItem("gasUrl_reservation") || "";
 let currentYear  = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
-let bookings = {};   // key → [{id,customerName,phone,rooms,note}]
+let bookings = {};
 let viewMode = "table";
-let modalCtx = null; // {day, roomIdx, key}
-let editingId = null;// null=adding, id=editing
+let modalCtx = null;
+let editingId = null;
 let deletingId = null;
 
-// ── Helpers ────────────────────────────────────────────────────────────────
+// ── Helpers ─────────────────────────────────────────────────────────────────
 function daysInMonth(y,m){ return new Date(y,m+1,0).getDate(); }
 function dayOfWeek(y,m,d){ return new Date(y,m,d).getDay(); }
 function bKey(y,m,d,ri){ return `res-${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}-${ri}`; }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
 function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function getBks(key){ return bookings[key] || []; }
-function saveBks(key,arr){
-  if(arr.length===0){ delete bookings[key]; } else { bookings[key]=arr; }
+function getBks(key){ return bookings[key]||[]; }
+
+// ── Daily summary ────────────────────────────────────────────────────────────
+function getDaySummary(y,m,day){
+  // Returns {totalRooms, byRoom:[{name,rooms}], byBed:{bedType:count}}
+  let totalRooms=0;
+  const byRoom=[];
+  const byBed={};
+  ROOMS.forEach((r,ri)=>{
+    const arr=getBks(bKey(y,m,day,ri));
+    const roomTotal=arr.reduce((s,b)=>s+(parseInt(b.rooms)||0),0);
+    totalRooms+=roomTotal;
+    if(roomTotal>0) byRoom.push({name:r.name,rooms:roomTotal,color:r.color});
+    arr.forEach(b=>{
+      if(b.bedType&&b.rooms){
+        byBed[b.bedType]=(byBed[b.bedType]||0)+(parseInt(b.rooms)||0);
+      }
+    });
+  });
+  return {totalRooms,byRoom,byBed};
 }
 
 function toast(msg,type){
   const t=document.createElement("div");
   t.className="toast";
-  t.style.background = type==="err"?"#EF4444":"#1A3A5C";
-  t.textContent = (type==="err"?"⚠️ ":"✅ ")+msg;
+  t.style.background=type==="err"?"#EF4444":"#1A3A5C";
+  t.textContent=(type==="err"?"⚠️ ":"✅ ")+msg;
   document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 2800);
+  setTimeout(()=>t.remove(),2800);
 }
 
-// ── API ────────────────────────────────────────────────────────────────────
+// ── API ──────────────────────────────────────────────────────────────────────
 async function api(params){
-  const qs = new URLSearchParams(params).toString();
-  const res = await fetch(gasUrl+"?"+qs, {redirect:"follow"});
+  const qs=new URLSearchParams(params).toString();
+  const res=await fetch(gasUrl+"?"+qs,{redirect:"follow"});
   return res.json();
 }
 async function loadBookings(){
-  document.getElementById("mainContent").innerHTML = '<div class="loading-txt">⏳ กำลังโหลดข้อมูล...</div>';
+  document.getElementById("mainContent").innerHTML='<div class="loading-txt">⏳ กำลังโหลดข้อมูล...</div>';
   try{
-    const raw = await api({action:"getAll", prefix:`res-${currentYear}-`});
-    bookings = {};
-    for(const[k,v] of Object.entries(raw)){
-      try{ bookings[k] = JSON.parse(v); } catch{}
-    }
-  } catch(e){ toast("โหลดข้อมูลไม่สำเร็จ: "+e.message,"err"); }
+    const raw=await api({action:"getAll",prefix:`res-${currentYear}-`});
+    bookings={};
+    for(const[k,v] of Object.entries(raw)){try{bookings[k]=JSON.parse(v);}catch{}}
+  }catch(e){toast("โหลดข้อมูลไม่สำเร็จ: "+e.message,"err");}
   renderContent();
 }
 
-// ── Setup ──────────────────────────────────────────────────────────────────
-document.getElementById("gasCode").textContent = GAS_CODE;
-
+// ── Setup ────────────────────────────────────────────────────────────────────
+document.getElementById("gasCode").textContent=GAS_CODE;
 function gotoStep(n){
   [1,2,3].forEach(i=>{
-    document.getElementById("step"+i).style.display = i===n?"block":"none";
-    document.getElementById("dot"+i).className = "sdot"+(i<=n?" done":"");
-    if(i<3) document.getElementById("line"+i).className = "sline"+(i<n?" done":"");
+    document.getElementById("step"+i).style.display=i===n?"block":"none";
+    document.getElementById("dot"+i).className="sdot"+(i<=n?" done":"");
+    if(i<3) document.getElementById("line"+i).className="sline"+(i<n?" done":"");
   });
 }
 function copyCode(){
@@ -405,208 +424,230 @@ function copyCode(){
   }).catch(()=>alert("กรุณาเลือกโค้ดแล้ว Ctrl+C ครับ"));
 }
 async function doConnect(){
-  const url = document.getElementById("urlBox").value.trim();
-  const resultEl = document.getElementById("test-result");
-  const btn = document.querySelector(".connect-btn");
-  if(!url){ resultEl.textContent="⚠️ กรุณาวาง URL ก่อนครับ"; resultEl.className="tres res-err"; resultEl.style.display="block"; return; }
-  btn.textContent="⏳ กำลังทดสอบ..."; btn.style.background="#AAA"; resultEl.style.display="none";
+  const url=document.getElementById("urlBox").value.trim();
+  const resultEl=document.getElementById("test-result");
+  const btn=document.querySelector(".connect-btn");
+  if(!url){resultEl.textContent="⚠️ กรุณาวาง URL ก่อนครับ";resultEl.className="tres res-err";resultEl.style.display="block";return;}
+  btn.textContent="⏳ กำลังทดสอบ...";btn.style.background="#AAA";resultEl.style.display="none";
   try{
     gasUrl=url;
-    const res = await api({action:"getAll",prefix:"test-"});
+    const res=await api({action:"getAll",prefix:"test-"});
     if(typeof res==="object"&&!res.error){
       localStorage.setItem("gasUrl_reservation",url);
       resultEl.textContent="✅ เชื่อมต่อสำเร็จ! กำลังเปิดโปรแกรม...";
-      resultEl.className="tres res-ok"; resultEl.style.display="block";
-      setTimeout(()=>startApp(), 900);
-    } else {
+      resultEl.className="tres res-ok";resultEl.style.display="block";
+      setTimeout(()=>startApp(),900);
+    }else{
       gasUrl="";
       resultEl.textContent="⚠️ "+(res.error||"เชื่อมต่อไม่สำเร็จ");
-      resultEl.className="tres res-err"; resultEl.style.display="block";
-      btn.textContent="🔗 ทดสอบและเชื่อมต่อ"; btn.style.background="#1A3A5C";
+      resultEl.className="tres res-err";resultEl.style.display="block";
+      btn.textContent="🔗 ทดสอบและเชื่อมต่อ";btn.style.background="#1A3A5C";
     }
-  } catch(e){
+  }catch(e){
     gasUrl="";
-    resultEl.textContent="⚠️ "+e.message; resultEl.className="tres res-err"; resultEl.style.display="block";
-    btn.textContent="🔗 ทดสอบและเชื่อมต่อ"; btn.style.background="#1A3A5C";
+    resultEl.textContent="⚠️ "+e.message;resultEl.className="tres res-err";resultEl.style.display="block";
+    btn.textContent="🔗 ทดสอบและเชื่อมต่อ";btn.style.background="#1A3A5C";
   }
 }
 
-// ── App boot ───────────────────────────────────────────────────────────────
+// ── App ──────────────────────────────────────────────────────────────────────
 function startApp(){
   document.getElementById("setup-page").style.display="none";
   document.getElementById("app-page").style.display="block";
-  // Year selector
-  const sel = document.getElementById("yearSel");
-  sel.innerHTML = YEARS.map(y=>`<option value="${y}" ${y===currentYear?"selected":""}>${y} (พ.ศ. ${y+543})</option>`).join("");
-  buildMonthTabs();
-  loadBookings();
+  const sel=document.getElementById("yearSel");
+  sel.innerHTML=YEARS.map(y=>`<option value="${y}"${y===currentYear?" selected":""}>${y} (พ.ศ. ${y+543})</option>`).join("");
+  buildMonthTabs(); loadBookings();
 }
-function onYearChange(){
-  currentYear = parseInt(document.getElementById("yearSel").value);
-  buildMonthTabs();
-  loadBookings();
-}
-function resetUrl(){
-  localStorage.removeItem("gasUrl_reservation"); gasUrl=""; bookings={};
-  document.getElementById("settOverlay").style.display="none";
-  document.getElementById("app-page").style.display="none";
-  document.getElementById("setup-page").style.display="flex";
-  gotoStep(1); document.getElementById("urlBox").value="";
-  document.getElementById("test-result").style.display="none";
-}
+function onYearChange(){ currentYear=parseInt(document.getElementById("yearSel").value); buildMonthTabs(); loadBookings(); }
+function resetUrl(){ localStorage.removeItem("gasUrl_reservation"); gasUrl=""; bookings={}; document.getElementById("settOverlay").style.display="none"; document.getElementById("app-page").style.display="none"; document.getElementById("setup-page").style.display="flex"; gotoStep(1); }
 function showSettings(){ document.getElementById("settOverlay").style.display="flex"; }
 function closeSettings(){ document.getElementById("settOverlay").style.display="none"; }
-
-// ── Month tabs ─────────────────────────────────────────────────────────────
 function buildMonthTabs(){
-  const el = document.getElementById("monthTabs");
-  el.innerHTML = MSH.map((m,i)=>
-    `<button class="mtab${i===currentMonth?" act":""}" onclick="changeMonth(${i})">${m}</button>`
-  ).join("");
+  document.getElementById("monthTabs").innerHTML=MSH.map((m,i)=>`<button class="mtab${i===currentMonth?" act":""}" onclick="changeMonth(${i})">${m}</button>`).join("");
 }
 function changeMonth(i){ currentMonth=i; buildMonthTabs(); loadBookings(); }
-
-// ── View ───────────────────────────────────────────────────────────────────
 function setView(v){
   viewMode=v;
   document.getElementById("btnTable").className="hbtn "+(v==="table"?"act":"inact");
   document.getElementById("btnList").className="hbtn "+(v==="list"?"act":"inact");
   renderContent();
 }
+
 function renderContent(){
-  const days = daysInMonth(currentYear, currentMonth);
-  document.getElementById("monthTitle").textContent = `${MTH[currentMonth]} ${currentYear} (พ.ศ. ${currentYear+543})`;
+  const days=daysInMonth(currentYear,currentMonth);
+  document.getElementById("monthTitle").textContent=`${MTH[currentMonth]} ${currentYear} (พ.ศ. ${currentYear+543})`;
   updatePills(days);
-  const el = document.getElementById("mainContent");
+  const el=document.getElementById("mainContent");
   el.innerHTML="";
   el.appendChild(viewMode==="table"?buildTable(days):buildList(days));
 }
+
 function updatePills(days){
-  const el = document.getElementById("pillsRow");
+  const el=document.getElementById("pillsRow");
   let html="";
   ROOMS.forEach((r,ri)=>{
-    let total=0;
-    for(let d=1;d<=days;d++){
-      const arr=getBks(bKey(currentYear,currentMonth,d,ri));
-      total+=arr.reduce((s,b)=>s+(parseInt(b.rooms)||0),0);
-    }
-    html+=`<div class="rpill" style="border-left-color:${r.color}"><div class="rpill-name">${r.name} (${r.cap} ห้อง)</div><div class="rpill-info">จองสะสม ${total} ห้อง</div></div>`;
+    let totalR=0;
+    for(let d=1;d<=days;d++) totalR+=getBks(bKey(currentYear,currentMonth,d,ri)).reduce((s,b)=>s+(parseInt(b.rooms)||0),0);
+    const bedSubs=r.bedTypes.map(bt=>`${bt.name} ${bt.cap}`).join(" / ");
+    html+=`<div class="rpill" style="border-left-color:${r.color}">
+      <div class="rpill-name">${r.name} (${r.cap} ห้อง)</div>
+      <div class="rpill-sub">${bedSubs}</div>
+      <div class="rpill-info">จองสะสม ${totalR} ห้อง</div>
+    </div>`;
   });
   el.innerHTML=html;
 }
 
-// ── Table ──────────────────────────────────────────────────────────────────
+// ── Table ────────────────────────────────────────────────────────────────────
 function buildTable(days){
   const wrap=document.createElement("div"); wrap.className="twrap";
-  let html=`<table><thead><tr><th class="dcol">วันที่</th>${ROOMS.map(r=>`<th style="border-left:3px solid ${r.color}">${r.name}<br><span style="font-weight:400;font-size:10px;opacity:.8">${r.cap} ห้อง</span></th>`).join("")}</tr></thead><tbody>`;
+  let html=`<table><thead><tr>
+    <th class="dcol">วันที่</th>
+    ${ROOMS.map(r=>`<th style="border-left:3px solid ${r.color}">${r.name}<br><span style="font-weight:400;font-size:10px;opacity:.8">${r.cap} ห้อง · ${r.bedTypes.map(b=>b.name+" "+b.cap).join(" / ")}</span></th>`).join("")}
+    <th class="sumcol">สรุปรายวัน</th>
+  </tr></thead><tbody>`;
+
   for(let day=1;day<=days;day++){
     const dw=dayOfWeek(currentYear,currentMonth,day);
     const bg=dw===0?"#FFF5F5":dw===6?"#F5F8FF":day%2===0?"#FAFCFF":"#fff";
-    html+=`<tr style="background:${bg}"><td class="dcell"><div class="dnum" style="color:${DC[dw]||"#0D2137"}">${day}</div><div class="dname" style="color:${DC[dw]||"#BBB"}">${DSH[dw]}</div></td>`;
+    const sum=getDaySummary(currentYear,currentMonth,day);
+
+    html+=`<tr style="background:${bg}">
+      <td class="dcell"><div class="dnum" style="color:${DC[dw]||"#0D2137"}">${day}</div><div class="dname" style="color:${DC[dw]||"#BBB"}">${DSH[dw]}</div></td>`;
+
     ROOMS.forEach((r,ri)=>{
       const key=bKey(currentYear,currentMonth,day,ri);
       const arr=getBks(key);
       let inner="";
       if(arr.length){
-        const show=arr.slice(0,3);
-        show.forEach((b,i)=>{
+        arr.slice(0,3).forEach((b,i)=>{
           inner+=`<div class="bk-chip" style="background:${r.light};border-left:3px solid ${r.color}">
-            <span class="bk-num" style="background:${r.color}">${i+1}</span>
-            <div class="bk-info">
-              <div class="bk-name" style="color:${r.color}">${esc(b.customerName)}</div>
-              <div class="bk-sub">${b.rooms?b.rooms+" ห้อง":""}${b.phone?" · "+esc(b.phone):""}</div>
-            </div></div>`;
+            <div class="bk-chip-head">
+              <span class="bk-num" style="background:${r.color}">${i+1}</span>
+              <span class="bk-name" style="color:${r.color}">${esc(b.customerName)}</span>
+            </div>
+            <div class="bk-sub">${b.bedType?esc(b.bedType):""}${b.rooms?" · "+b.rooms+"ห้อง":""}${b.staffName?" · "+esc(b.staffName):""}</div>
+          </div>`;
         });
         if(arr.length>3) inner+=`<div class="more-chip">+${arr.length-3} รายการ</div>`;
         inner+=`<div class="cell-add">+ เพิ่ม</div>`;
-      } else {
+      }else{
         inner=`<div class="cell-add">+ เพิ่ม</div>`;
       }
       html+=`<td class="rcell" style="border-left:2px solid ${r.color}22" onclick="openModal(${day},${ri})">${inner}</td>`;
     });
-    html+=`</tr>`;
+
+    // Summary column
+    let sumHtml="";
+    if(sum.totalRooms>0){
+      sumHtml=sum.byRoom.map(br=>`<div class="sum-row-item"><span class="sum-label" style="color:${br.color}">${br.name}</span><span class="sum-val" style="color:${br.color}">${br.rooms}</span></div>`).join("");
+      if(Object.keys(sum.byBed).length>0){
+        sumHtml+=Object.entries(sum.byBed).map(([bt,c])=>`<div class="sum-row-item"><span class="sum-label">${bt}</span><span>${c}</span></div>`).join("");
+      }
+      sumHtml+=`<div class="sum-row-item total"><span>รวมทั้งหมด</span><span>${sum.totalRooms} ห้อง</span></div>`;
+    }else{
+      sumHtml=`<div style="color:#CCC;font-size:10px;text-align:center;padding:4px 0">ว่าง</div>`;
+    }
+    html+=`<td class="sumcell">${sumHtml}</td></tr>`;
   }
   html+=`</tbody></table>`;
-  wrap.innerHTML=html;
-  return wrap;
+  wrap.innerHTML=html; return wrap;
 }
 
-// ── List ───────────────────────────────────────────────────────────────────
+// ── List ─────────────────────────────────────────────────────────────────────
 function buildList(days){
   const wrap=document.createElement("div"); wrap.className="lwrap";
   let any=false;
   for(let d=1;d<=days;d++){
+    const sum=getDaySummary(currentYear,currentMonth,d);
+    const dw=dayOfWeek(currentYear,currentMonth,d);
+    let daySlots="";
     ROOMS.forEach((r,ri)=>{
       const arr=getBks(bKey(currentYear,currentMonth,d,ri));
       if(!arr.length) return;
       any=true;
-      const dw=dayOfWeek(currentYear,currentMonth,d);
-      const card=document.createElement("div");
-      card.className="lcard"; card.style.borderLeft=`4px solid ${r.color}`;
-      let shtml=arr.map((b,i)=>`
+      daySlots+=arr.map((b,i)=>`
         <div class="lslot" style="background:${r.light};border-left:3px solid ${r.color}">
           <span class="lsbadge" style="background:${r.color}">${i+1}</span>
           <div style="flex:1">
             <div style="font-weight:700;font-size:14px;color:#0D2137">${esc(b.customerName)}</div>
-            ${b.phone?`<div style="font-size:12px;color:#555">📞 ${esc(b.phone)}</div>`:""}
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:2px;font-size:12px;color:#777">
-              ${b.rooms?`<span>🛏 ${b.rooms} ห้อง</span>`:""}
-              ${b.note?`<span>📝 ${esc(b.note)}</span>`:""}
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">
+              <span class="bk-tag" style="background:${r.light};color:${r.color}">${r.name}</span>
+              ${b.bedType?`<span class="bk-tag">${esc(b.bedType)}</span>`:""}
+              ${b.rooms?`<span class="bk-tag">🛏 ${b.rooms} ห้อง</span>`:""}
+              ${b.phone?`<span class="bk-tag">📞 ${esc(b.phone)}</span>`:""}
+              ${b.staffName?`<span class="bk-tag">👤 ${esc(b.staffName)}</span>`:""}
             </div>
+            ${b.note?`<div style="font-size:12px;color:#777;margin-top:3px">📝 ${esc(b.note)}</div>`:""}
           </div>
         </div>`).join("");
-      card.innerHTML=`
-        <div class="lday"><div class="ldnum" style="color:${DC[dw]||"#0D2137"}">${d}</div><div class="ldname" style="color:${DC[dw]||"#999"}">${DTH[dw]}</div></div>
-        <div style="flex:1"><div style="font-size:11px;font-weight:700;color:${r.color};margin-bottom:8px">${r.name} · ${arr.length} รายการ</div><div class="lslots">${shtml}</div></div>`;
-      card.onclick=()=>openModal(d,ri);
-      wrap.appendChild(card);
     });
+    if(!daySlots) continue;
+    any=true;
+    const card=document.createElement("div"); card.className="lcard"; card.style.borderLeft="4px solid #C9A84C";
+    card.innerHTML=`
+      <div class="lday"><div class="ldnum" style="color:${DC[dw]||"#0D2137"}">${d}</div><div class="ldname" style="color:${DC[dw]||"#999"}">${DTH[dw]}</div></div>
+      <div style="flex:1">
+        <div class="lslots">${daySlots}</div>
+        ${sum.totalRooms>0?`<div style="margin-top:8px;padding:8px 12px;background:#FFF8EC;border-radius:8px;border-left:3px solid #C9A84C;font-size:12px;color:#7A5A00;font-weight:600">
+          รวมวันนี้: ${sum.totalRooms} ห้อง · ${sum.byRoom.map(br=>br.name+" "+br.rooms).join(", ")}
+        </div>`:""}
+      </div>`;
+    wrap.appendChild(card);
   }
-  if(!any){
-    const e=document.createElement("div"); e.className="empty-box";
-    e.innerHTML='<div style="font-size:40px;margin-bottom:12px">📭</div>ยังไม่มีการจองในเดือนนี้';
-    wrap.appendChild(e);
-  }
+  if(!any){const e=document.createElement("div");e.className="empty-box";e.innerHTML='<div style="font-size:40px;margin-bottom:12px">📭</div>ยังไม่มีการจองในเดือนนี้';wrap.appendChild(e);}
   return wrap;
 }
 
-// ── Modal ──────────────────────────────────────────────────────────────────
-function openModal(day, ri){
+// ── Modal ────────────────────────────────────────────────────────────────────
+function openModal(day,ri){
   const key=bKey(currentYear,currentMonth,day,ri);
-  modalCtx={day,ri,key};
-  editingId=null; deletingId=null;
+  modalCtx={day,ri,key}; editingId=null; deletingId=null;
   renderModal();
   document.getElementById("bkOverlay").style.display="flex";
 }
-function closeModal(){
-  document.getElementById("bkOverlay").style.display="none";
-  modalCtx=null; editingId=null; deletingId=null;
-}
+function closeModal(){ document.getElementById("bkOverlay").style.display="none"; modalCtx=null; editingId=null; deletingId=null; }
+
 function renderModal(){
-  const {day,ri,key}=modalCtx;
+  const{day,ri,key}=modalCtx;
   const r=ROOMS[ri];
   const dw=dayOfWeek(currentYear,currentMonth,day);
   const arr=getBks(key);
-  // Header
+  const totalBooked=arr.reduce((s,b)=>s+(parseInt(b.rooms)||0),0);
+
+  // Bed type availability
+  const bedAvail=r.bedTypes.map(bt=>{
+    const used=arr.reduce((s,b)=>b.bedType===bt.name?s+(parseInt(b.rooms)||0):s,0);
+    return{...bt,used,avail:bt.cap-used};
+  });
+
   document.getElementById("mhead").style.background=`linear-gradient(135deg,${r.color},${r.color}CC)`;
   document.getElementById("mhead").innerHTML=`
     <div class="mhead-date">${day} ${MTH[currentMonth]} ${currentYear} · ${DTH[dw]}</div>
     <div class="mhead-room">${r.name}</div>
-    <div class="mhead-cap">ความจุ ${r.cap} ห้อง · จองแล้ว ${arr.reduce((s,b)=>s+(parseInt(b.rooms)||0),0)} ห้อง</div>`;
-  // Body
+    <div class="mhead-sub">
+      <span class="mhead-badge">ทั้งหมด ${r.cap} ห้อง</span>
+      <span class="mhead-badge">จองแล้ว ${totalBooked} ห้อง</span>
+      <span class="mhead-badge">คงเหลือ ${r.cap-totalBooked} ห้อง</span>
+      ${bedAvail.map(bt=>`<span class="mhead-badge">${bt.name}: เหลือ ${bt.avail}/${bt.cap}</span>`).join("")}
+    </div>`;
+
   let listHtml=`<div class="bk-list">
-    <div class="bk-list-title"><span>รายการจอง (${arr.length} รายการ)</span></div>`;
-  arr.forEach((b,i)=>{
+    <div class="bk-list-title">รายการจอง (${arr.length} รายการ · รวม ${totalBooked} ห้อง)</div>`;
+
+  arr.forEach(b=>{
     const isDel=deletingId===b.id;
     listHtml+=`<div class="bk-item" style="border-left-color:${r.color}">
       <div class="bk-item-head">
-        <div>
-          <div class="bk-item-name">${esc(b.customerName)}</div>
-          ${b.phone?`<div class="bk-item-phone">📞 ${esc(b.phone)}</div>`:""}
-        </div>
-        <div style="font-size:13px;color:${r.color};font-weight:700">${b.rooms?b.rooms+" ห้อง":""}</div>
+        <div><div class="bk-item-name">${esc(b.customerName)}</div></div>
+        <div style="font-size:13px;color:${r.color};font-weight:700;white-space:nowrap">${b.rooms||""} ห้อง</div>
       </div>
-      ${b.note?`<div class="bk-item-detail">📝 ${esc(b.note)}</div>`:""}
+      <div class="bk-item-detail">
+        ${b.bedType?`<span class="bk-tag" style="color:${r.color}">🛏 ${esc(b.bedType)}</span>`:""}
+        ${b.phone?`<span class="bk-tag">📞 ${esc(b.phone)}</span>`:""}
+        ${b.staffName?`<span class="bk-tag">👤 ${esc(b.staffName)}</span>`:""}
+        ${b.note?`<span class="bk-tag">📝 ${esc(b.note)}</span>`:""}
+      </div>
       <div class="bk-item-btns">
         <button class="bk-btn-edit" style="border-color:${r.color};color:${r.color}" onclick="startEdit('${b.id}')">✏️ แก้ไข</button>
         <button class="bk-btn-del" onclick="startDelete('${b.id}')">🗑 ลบ</button>
@@ -619,11 +660,11 @@ function renderModal(){
   });
   listHtml+=`<button class="add-bk-btn" onclick="startAdd()">＋ เพิ่มรายการจองใหม่</button></div>`;
 
-  // Form (for add or edit)
   let formHtml="";
   if(editingId!==null){
-    const bk = editingId==="new" ? {customerName:"",phone:"",rooms:"",note:""} : (arr.find(b=>b.id===editingId)||{});
+    const bk=editingId==="new"?{}:(arr.find(b=>b.id===editingId)||{});
     const isNew=editingId==="new";
+    const bedOpts=r.bedTypes.map(bt=>`<option value="${bt.name}"${bk.bedType===bt.name?" selected":""}>${bt.name} (เหลือ ${bedAvail.find(b=>b.name===bt.name)?.avail??bt.cap} ห้อง)</option>`).join("");
     formHtml=`<div class="bk-form">
       <div class="bk-form-title">${isNew?"➕ เพิ่มรายการจองใหม่":"✏️ แก้ไขข้อมูลการจอง"}</div>
       <div class="frow">
@@ -631,7 +672,13 @@ function renderModal(){
         <div class="field"><label>เบอร์โทรศัพท์</label><input type="tel" id="f_phone" value="${esc(bk.phone||"")}" placeholder="0xx-xxx-xxxx"/></div>
       </div>
       <div class="frow">
+        <div class="field"><label>ประเภทเตียง</label>
+          <select id="f_bedtype"><option value="">-- เลือกประเภทเตียง --</option>${bedOpts}</select>
+        </div>
         <div class="field"><label>จำนวนห้อง</label><input type="number" id="f_rooms" value="${esc(bk.rooms||"")}" placeholder="0" min="1" max="${r.cap}"/></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>ชื่อพนักงาน</label><input type="text" id="f_staff" value="${esc(bk.staffName||"")}" placeholder="ชื่อพนักงานที่รับจอง"/></div>
         <div class="field"><label>ประเภทห้อง</label><input type="text" value="${r.name}" readonly style="background:#EEF4FB;color:${r.color};font-weight:700"/></div>
       </div>
       <div class="field"><label>หมายเหตุ</label><textarea id="f_note" rows="2" placeholder="ข้อมูลเพิ่มเติม...">${esc(bk.note||"")}</textarea></div>
@@ -641,10 +688,11 @@ function renderModal(){
       </div>
     </div>`;
   }
+
   document.getElementById("mbody").innerHTML=listHtml+formHtml;
-  // Scroll to form if editing
   if(editingId!==null) document.getElementById("mbody").scrollTop=9999;
 }
+
 function startAdd(){ editingId="new"; deletingId=null; renderModal(); }
 function startEdit(id){ editingId=id; deletingId=null; renderModal(); }
 function cancelEdit(){ editingId=null; renderModal(); }
@@ -653,42 +701,39 @@ function cancelDelete(){ deletingId=null; renderModal(); }
 
 async function saveBooking(eid){
   const name=document.getElementById("f_name").value.trim();
-  if(!name){ alert("กรุณากรอกชื่อลูกค้าครับ"); return; }
+  if(!name){alert("กรุณากรอกชื่อลูกค้าครับ");return;}
   const phone=document.getElementById("f_phone").value.trim();
+  const bedType=document.getElementById("f_bedtype").value;
   const rooms=document.getElementById("f_rooms").value.trim();
+  const staffName=document.getElementById("f_staff").value.trim();
   const note=document.getElementById("f_note").value.trim();
-  const {key}=modalCtx;
+  const{key}=modalCtx;
   const arr=[...getBks(key)];
   if(eid==="new"){
-    arr.push({id:uid(),customerName:name,phone,rooms,note});
-  } else {
+    arr.push({id:uid(),customerName:name,phone,bedType,rooms,staffName,note});
+  }else{
     const idx=arr.findIndex(b=>b.id===eid);
-    if(idx>=0) arr[idx]={...arr[idx],customerName:name,phone,rooms,note};
+    if(idx>=0) arr[idx]={...arr[idx],customerName:name,phone,bedType,rooms,staffName,note};
   }
   await apiSave(key,arr);
   editingId=null; renderModal(); renderContent();
 }
 async function confirmDelete(id){
-  const {key}=modalCtx;
+  const{key}=modalCtx;
   const arr=getBks(key).filter(b=>b.id!==id);
   await apiSave(key,arr);
   deletingId=null; renderModal(); renderContent();
 }
 async function apiSave(key,arr){
   try{
-    if(arr.length===0){
-      await api({action:"delete",key});
-      delete bookings[key];
-    } else {
-      await api({action:"set",key,value:JSON.stringify(arr)});
-      bookings[key]=arr;
-    }
+    if(arr.length===0){await api({action:"delete",key});delete bookings[key];}
+    else{await api({action:"set",key,value:JSON.stringify(arr)});bookings[key]=arr;}
     toast("บันทึกเรียบร้อย");
-  } catch(e){ toast("บันทึกไม่สำเร็จ: "+e.message,"err"); }
+  }catch(e){toast("บันทึกไม่สำเร็จ: "+e.message,"err");}
 }
 
-// ── Boot ───────────────────────────────────────────────────────────────────
-if(location.search.includes("setup") || !gasUrl){ gotoStep(1); } else { startApp(); }
+// ── Boot ─────────────────────────────────────────────────────────────────────
+if(location.search.includes("setup")||!gasUrl){ gotoStep(1); } else { startApp(); }
 </script>
 </body>
 </html>
