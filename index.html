@@ -364,8 +364,7 @@ function getBks(key){ return bookings[key]||[]; }
 
 // ── Daily summary ────────────────────────────────────────────────────────────
 function getDaySummary(y,m,day){
-  // Returns {totalRooms, byRoom:[{name,rooms}], byBed:{bedType:count}}
-  let totalRooms=0;
+  let totalRooms=0, totalBreakfast=0, totalExtraBed=0;
   const byRoom=[];
   const byBed={};
   ROOMS.forEach((r,ri)=>{
@@ -374,12 +373,12 @@ function getDaySummary(y,m,day){
     totalRooms+=roomTotal;
     if(roomTotal>0) byRoom.push({name:r.name,rooms:roomTotal,color:r.color});
     arr.forEach(b=>{
-      if(b.bedType&&b.rooms){
-        byBed[b.bedType]=(byBed[b.bedType]||0)+(parseInt(b.rooms)||0);
-      }
+      if(b.bedType&&b.rooms) byBed[b.bedType]=(byBed[b.bedType]||0)+(parseInt(b.rooms)||0);
+      if(b.breakfast&&b.breakfastPax) totalBreakfast+=(parseInt(b.breakfastPax)||0);
+      if(b.extraBed) totalExtraBed++;
     });
   });
-  return {totalRooms,byRoom,byBed};
+  return {totalRooms,byRoom,byBed,totalBreakfast,totalExtraBed};
 }
 
 function toast(msg,type){
@@ -545,6 +544,10 @@ function buildTable(days){
         sumHtml+=Object.entries(sum.byBed).map(([bt,c])=>`<div class="sum-row-item"><span class="sum-label">${bt}</span><span>${c}</span></div>`).join("");
       }
       sumHtml+=`<div class="sum-row-item total"><span>รวมทั้งหมด</span><span>${sum.totalRooms} ห้อง</span></div>`;
+      sumHtml+=`<div style="border-top:1px dashed #DDD;margin-top:3px;padding-top:3px">`;
+      sumHtml+=`<div class="sum-row-item" style="color:#D97706"><span>🍳 อาหารเช้า</span><span style="font-weight:700;color:#D97706">${sum.totalBreakfast} ท่าน</span></div>`;
+      if(sum.totalExtraBed>0) sumHtml+=`<div class="sum-row-item" style="color:#7C3AED"><span>🛏 เสริมเตียง</span><span style="font-weight:700;color:#7C3AED">${sum.totalExtraBed} รายการ</span></div>`;
+      sumHtml+=`</div>`;
     }else{
       sumHtml=`<div style="color:#CCC;font-size:10px;text-align:center;padding:4px 0">ว่าง</div>`;
     }
@@ -575,8 +578,12 @@ function buildList(days){
               <span class="bk-tag" style="background:${r.light};color:${r.color}">${r.name}</span>
               ${b.bedType?`<span class="bk-tag">${esc(b.bedType)}</span>`:""}
               ${b.rooms?`<span class="bk-tag">🛏 ${b.rooms} ห้อง</span>`:""}
+              ${b.price?`<span class="bk-tag">💰 ${esc(b.price)} บ.</span>`:""}
               ${b.phone?`<span class="bk-tag">📞 ${esc(b.phone)}</span>`:""}
               ${b.staffName?`<span class="bk-tag">👤 ${esc(b.staffName)}</span>`:""}
+              ${b.breakfast?`<span class="bk-tag" style="background:#FEF3C7;color:#92400E">🍳 ${b.breakfastPax||0} ท่าน</span>`:""}
+              ${b.noBreakfast?`<span class="bk-tag" style="background:#FEE2E2;color:#991B1B">❌ ไม่รวมอาหารเช้า</span>`:""}
+              ${b.extraBed?`<span class="bk-tag" style="background:#EDE9FE;color:#5B21B6">🛏 เสริมเตียง</span>`:""}
             </div>
             ${b.note?`<div style="font-size:12px;color:#777;margin-top:3px">📝 ${esc(b.note)}</div>`:""}
           </div>
@@ -591,6 +598,8 @@ function buildList(days){
         <div class="lslots">${daySlots}</div>
         ${sum.totalRooms>0?`<div style="margin-top:8px;padding:8px 12px;background:#FFF8EC;border-radius:8px;border-left:3px solid #C9A84C;font-size:12px;color:#7A5A00;font-weight:600">
           รวมวันนี้: ${sum.totalRooms} ห้อง · ${sum.byRoom.map(br=>br.name+" "+br.rooms).join(", ")}
+          ${sum.totalBreakfast>0?` · 🍳 อาหารเช้า ${sum.totalBreakfast} ท่าน`:""}
+          ${sum.totalExtraBed>0?` · 🛏 เสริมเตียง ${sum.totalExtraBed} รายการ`:""}
         </div>`:""}
       </div>`;
     wrap.appendChild(card);
@@ -644,8 +653,13 @@ function renderModal(){
       </div>
       <div class="bk-item-detail">
         ${b.bedType?`<span class="bk-tag" style="color:${r.color}">🛏 ${esc(b.bedType)}</span>`:""}
+        ${b.rooms?`<span class="bk-tag">${b.rooms} ห้อง</span>`:""}
+        ${b.price?`<span class="bk-tag">💰 ${esc(b.price)} บ.</span>`:""}
         ${b.phone?`<span class="bk-tag">📞 ${esc(b.phone)}</span>`:""}
         ${b.staffName?`<span class="bk-tag">👤 ${esc(b.staffName)}</span>`:""}
+        ${b.breakfast?`<span class="bk-tag" style="background:#FEF3C7;color:#92400E">🍳 อาหารเช้า ${b.breakfastPax||0} ท่าน</span>`:""}
+        ${b.noBreakfast?`<span class="bk-tag" style="background:#FEE2E2;color:#991B1B">❌ ไม่รวมอาหารเช้า</span>`:""}
+        ${b.extraBed?`<span class="bk-tag" style="background:#EDE9FE;color:#5B21B6">🛏 เสริมเตียง</span>`:""}
         ${b.note?`<span class="bk-tag">📝 ${esc(b.note)}</span>`:""}
       </div>
       <div class="bk-item-btns">
@@ -678,8 +692,31 @@ function renderModal(){
         <div class="field"><label>จำนวนห้อง</label><input type="number" id="f_rooms" value="${esc(bk.rooms||"")}" placeholder="0" min="1" max="${r.cap}"/></div>
       </div>
       <div class="frow">
+        <div class="field"><label>ราคาห้องพัก (บาท)</label><input type="number" id="f_price" value="${esc(bk.price||"")}" placeholder="0"/></div>
         <div class="field"><label>ชื่อพนักงาน</label><input type="text" id="f_staff" value="${esc(bk.staffName||"")}" placeholder="ชื่อพนักงานที่รับจอง"/></div>
-        <div class="field"><label>ประเภทห้อง</label><input type="text" value="${r.name}" readonly style="background:#EEF4FB;color:${r.color};font-weight:700"/></div>
+      </div>
+      <div class="field" style="background:#FFFBEB;border-radius:10px;padding:12px 14px;border:1px solid #FDE68A">
+        <label style="color:#92400E;margin-bottom:8px">🍳 อาหารเช้า</label>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:400;color:#333">
+            <input type="checkbox" id="f_breakfast" ${bk.breakfast?"checked":""} onchange="toggleBreakfast()" style="width:16px;height:16px;cursor:pointer"/>
+            อาหารเช้า
+          </label>
+          <div id="f_bkpax_wrap" style="display:${bk.breakfast?"flex":"none"};align-items:center;gap:6px">
+            <input type="number" id="f_bkpax" value="${esc(bk.breakfastPax||"")}" placeholder="0" min="1" style="width:80px;padding:6px 10px;border-radius:6px;border:1.5px solid #FCD34D;font-size:14px;outline:none"/>
+            <span style="font-size:13px;color:#78350F">ท่าน</span>
+          </div>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-weight:400;color:#333">
+            <input type="checkbox" id="f_nobreakfast" ${bk.noBreakfast?"checked":""} onchange="toggleNoBreakfast()" style="width:16px;height:16px;cursor:pointer"/>
+            ไม่รวมอาหารเช้า
+          </label>
+        </div>
+      </div>
+      <div class="field" style="background:#F5F3FF;border-radius:10px;padding:12px 14px;border:1px solid #DDD6FE">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:400;color:#333">
+          <input type="checkbox" id="f_extrabed" ${bk.extraBed?"checked":""} style="width:16px;height:16px;cursor:pointer"/>
+          <span style="font-size:14px;font-weight:600;color:#5B21B6">🛏 เสริมเตียง</span>
+        </label>
       </div>
       <div class="field"><label>หมายเหตุ</label><textarea id="f_note" rows="2" placeholder="ข้อมูลเพิ่มเติม...">${esc(bk.note||"")}</textarea></div>
       <div class="form-btns">
@@ -705,15 +742,22 @@ async function saveBooking(eid){
   const phone=document.getElementById("f_phone").value.trim();
   const bedType=document.getElementById("f_bedtype").value;
   const rooms=document.getElementById("f_rooms").value.trim();
+  const price=document.getElementById("f_price").value.trim();
   const staffName=document.getElementById("f_staff").value.trim();
+  const breakfast=document.getElementById("f_breakfast").checked;
+  const breakfastPax=breakfast?document.getElementById("f_bkpax").value.trim():"";
+  const noBreakfast=document.getElementById("f_nobreakfast").checked;
+  const extraBed=document.getElementById("f_extrabed").checked;
   const note=document.getElementById("f_note").value.trim();
   const{key}=modalCtx;
   const arr=[...getBks(key)];
+  const entry={id:eid==="new"?uid():(arr.find(b=>b.id===eid)||{}).id||uid(),
+    customerName:name,phone,bedType,rooms,price,staffName,breakfast,breakfastPax,noBreakfast,extraBed,note};
   if(eid==="new"){
-    arr.push({id:uid(),customerName:name,phone,bedType,rooms,staffName,note});
+    arr.push(entry);
   }else{
     const idx=arr.findIndex(b=>b.id===eid);
-    if(idx>=0) arr[idx]={...arr[idx],customerName:name,phone,bedType,rooms,staffName,note};
+    if(idx>=0) arr[idx]=entry;
   }
   await apiSave(key,arr);
   editingId=null; renderModal(); renderContent();
@@ -730,6 +774,26 @@ async function apiSave(key,arr){
     else{await api({action:"set",key,value:JSON.stringify(arr)});bookings[key]=arr;}
     toast("บันทึกเรียบร้อย");
   }catch(e){toast("บันทึกไม่สำเร็จ: "+e.message,"err");}
+}
+
+function toggleBreakfast(){
+  const chk=document.getElementById("f_breakfast");
+  const wrap=document.getElementById("f_bkpax_wrap");
+  if(chk&&wrap){ wrap.style.display=chk.checked?"flex":"none"; }
+  // uncheck the other if checking this
+  if(chk&&chk.checked){
+    const nc=document.getElementById("f_nobreakfast");
+    if(nc) nc.checked=false;
+  }
+}
+function toggleNoBreakfast(){
+  const nc=document.getElementById("f_nobreakfast");
+  if(nc&&nc.checked){
+    const chk=document.getElementById("f_breakfast");
+    if(chk){ chk.checked=false; }
+    const wrap=document.getElementById("f_bkpax_wrap");
+    if(wrap) wrap.style.display="none";
+  }
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
