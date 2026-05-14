@@ -143,7 +143,9 @@ td.sumcell{padding:6px 8px;border-bottom:1px solid #EEF2F7;vertical-align:top;ba
 .del-confirm{background:#FEE2E2;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:13px;color:#DC2626;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .dconf-yes{background:#EF4444;color:#fff;padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:700}
 .dconf-no{background:none;border:1px solid #ccc;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px}
-@media(max-width:600px){.frow,.frow3{grid-template-columns:1fr}.header{padding:16px}.amain{padding:12px 8px}}
+.print-day-btn{display:block;margin:4px auto 0;padding:3px 8px;border-radius:6px;border:1px solid #B8C9D9;background:#EEF4FB;color:#1A3A5C;cursor:pointer;font-size:12px;transition:all .2s}
+.print-day-btn:hover{background:#1A3A5C;color:#fff}
+@media print{#setup-page,#app-page .header,.mtabs,.print-day-btn,#settOverlay,#bkOverlay{display:none!important}}
 </style>
 </head>
 <body>
@@ -512,7 +514,9 @@ function buildTable(days){
     const sum=getDaySummary(currentYear,currentMonth,day);
 
     html+=`<tr style="background:${bg}">
-      <td class="dcell"><div class="dnum" style="color:${DC[dw]||"#0D2137"}">${day}</div><div class="dname" style="color:${DC[dw]||"#BBB"}">${DSH[dw]}</div></td>`;
+      <td class="dcell"><div class="dnum" style="color:${DC[dw]||"#0D2137"}">${day}</div><div class="dname" style="color:${DC[dw]||"#BBB"}">${DSH[dw]}</div>
+      ${sum.totalRooms>0?`<button class="print-day-btn" onclick="printDay(${day})" title="ปริ้นรายการวันที่ ${day}">🖨️</button>`:""}
+      </td>`;
 
     ROOMS.forEach((r,ri)=>{
       const key=bKey(currentYear,currentMonth,day,ri);
@@ -794,6 +798,121 @@ function toggleNoBreakfast(){
     const wrap=document.getElementById("f_bkpax_wrap");
     if(wrap) wrap.style.display="none";
   }
+}
+
+// ── Print ─────────────────────────────────────────────────────────────────────
+function printDay(day){
+  const dw=dayOfWeek(currentYear,currentMonth,day);
+  const dayName=DTH[dw];
+  const dateStr=`${day} ${MTH[currentMonth]} ${currentYear} (พ.ศ. ${currentYear+543}) · ${dayName}`;
+  const sum=getDaySummary(currentYear,currentMonth,day);
+
+  let roomSections="";
+  ROOMS.forEach((r,ri)=>{
+    const arr=getBks(bKey(currentYear,currentMonth,day,ri));
+    if(!arr.length) return;
+    const roomTotal=arr.reduce((s,b)=>s+(parseInt(b.rooms)||0),0);
+    let rows=arr.map((b,i)=>`
+      <tr>
+        <td class="p-num">${i+1}</td>
+        <td class="p-name">${esc(b.customerName)}</td>
+        <td>${esc(b.bedType||"-")}</td>
+        <td style="text-align:center">${b.rooms||"-"}</td>
+        <td style="text-align:right">${b.price?Number(b.price).toLocaleString()+" บ.":"-"}</td>
+        <td style="text-align:center">
+          ${b.breakfast?`✅ ${b.breakfastPax||0} ท่าน`:b.noBreakfast?"❌":"-"}
+        </td>
+        <td style="text-align:center">${b.extraBed?"✅":"-"}</td>
+        <td>${esc(b.phone||"-")}</td>
+        <td>${esc(b.staffName||"-")}</td>
+        <td>${esc(b.note||"-")}</td>
+      </tr>`).join("");
+    roomSections+=`
+      <div class="p-room-head" style="background:${r.color}">
+        <span>${r.name}</span>
+        <span>${r.cap} ห้อง · จองแล้ว ${roomTotal} ห้อง</span>
+      </div>
+      <table class="p-table">
+        <thead><tr>
+          <th>#</th><th>ชื่อลูกค้า</th><th>ประเภทเตียง</th><th>จำนวนห้อง</th>
+          <th>ราคา</th><th>อาหารเช้า</th><th>เสริมเตียง</th><th>เบอร์โทร</th><th>พนักงาน</th><th>หมายเหตุ</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  });
+
+  const bedSumRows=Object.entries(sum.byBed).map(([bt,c])=>`<tr><td>${bt}</td><td>${c} ห้อง</td></tr>`).join("");
+  const roomSumRows=sum.byRoom.map(br=>`<tr><td style="color:${br.color};font-weight:600">${br.name}</td><td>${br.rooms} ห้อง</td></tr>`).join("");
+
+  const html=`<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<title>สรุปการจอง ${dateStr}</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;font-size:13px;color:#111;background:#fff;padding:24px}
+.p-header{border-bottom:3px solid #1A3A5C;padding-bottom:12px;margin-bottom:18px}
+.p-header h1{font-size:20px;color:#1A3A5C;font-weight:700}
+.p-header p{font-size:13px;color:#555;margin-top:4px}
+.p-room-head{color:#fff;padding:8px 12px;border-radius:6px 6px 0 0;font-weight:700;font-size:14px;display:flex;justify-content:space-between;margin-top:20px}
+.p-table{width:100%;border-collapse:collapse;font-size:12px;border:1px solid #ddd}
+.p-table th{background:#F4F8FC;padding:7px 8px;text-align:left;border:1px solid #ddd;font-weight:700;color:#1A3A5C;white-space:nowrap}
+.p-table td{padding:7px 8px;border:1px solid #E5E7EB;vertical-align:top}
+.p-table tr:nth-child(even) td{background:#FAFCFF}
+.p-num{text-align:center;width:28px;font-weight:700;color:#888}
+.p-name{font-weight:700;color:#0D2137}
+.p-summary{margin-top:24px;display:flex;gap:16px;flex-wrap:wrap}
+.p-sum-box{border:1px solid #ddd;border-radius:8px;padding:12px 16px;min-width:180px;flex:1}
+.p-sum-box h3{font-size:13px;color:#1A3A5C;margin-bottom:8px;font-weight:700;border-bottom:1px solid #eee;padding-bottom:6px}
+.p-sum-box table{width:100%;font-size:12px}
+.p-sum-box td{padding:3px 0}
+.p-sum-box td:last-child{text-align:right;font-weight:700}
+.p-total-row{background:#EEF4FB;font-weight:700;color:#1A3A5C}
+.p-breakfast-box{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px 16px;flex:1;min-width:180px}
+.p-breakfast-box h3{color:#92400E;font-size:13px;font-weight:700;margin-bottom:8px}
+.p-big{font-size:28px;font-weight:800;color:#D97706}
+.p-footer{margin-top:30px;padding-top:12px;border-top:1px solid #ddd;font-size:11px;color:#999;display:flex;justify-content:space-between}
+@media print{body{padding:16px}@page{margin:1cm}}
+</style>
+</head>
+<body>
+<div class="p-header">
+  <h1>สรุปการจองห้องพัก</h1>
+  <p>📅 ${dateStr}</p>
+  <p style="margin-top:4px;font-size:12px;color:#999">พิมพ์เมื่อ: ${new Date().toLocaleString("th-TH")}</p>
+</div>
+
+${roomSections}
+
+<div class="p-summary">
+  <div class="p-sum-box">
+    <h3>🏨 สรุปจำนวนห้องพัก</h3>
+    <table>
+      ${roomSumRows}
+      ${bedSumRows}
+      <tr class="p-total-row"><td>รวมทั้งหมด</td><td>${sum.totalRooms} ห้อง</td></tr>
+    </table>
+  </div>
+  <div class="p-breakfast-box">
+    <h3>🍳 อาหารเช้า</h3>
+    <div class="p-big">${sum.totalBreakfast} ท่าน</div>
+    ${sum.totalExtraBed>0?`<div style="margin-top:10px;padding-top:10px;border-top:1px solid #FDE68A"><h3 style="color:#5B21B6">🛏 เสริมเตียง</h3><div style="font-size:24px;font-weight:800;color:#7C3AED">${sum.totalExtraBed} รายการ</div></div>`:""}
+  </div>
+</div>
+
+<div class="p-footer">
+  <span>Room Reservation System</span>
+  <span>_______________________ ผู้รับผิดชอบ</span>
+</div>
+
+<script>window.onload=()=>{window.print();}<\/script>
+</body></html>`;
+
+  const w=window.open("","_blank","width=1000,height=700");
+  w.document.write(html);
+  w.document.close();
 }
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
